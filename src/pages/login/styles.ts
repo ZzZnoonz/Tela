@@ -1,4 +1,4 @@
-import { StyleSheet } from "react-native";
+import { Dimensions, StyleSheet } from "react-native";
 
 export const style = StyleSheet.create({
     container:{
@@ -7,18 +7,31 @@ export const style = StyleSheet.create({
         justifyContent: 'center'
     },
     boxTop:{
-        height:200,
+        height:Dimensions.get('window').height/3,
         width:'100%',
-        backgroundColor:'red'
+        backgroundColor:'red',
+        alignItems: 'center',
+        justifyContent: 'center'
     },
     boxMid:{
-        height:200,
+        height:Dimensions.get('window').height/3,
         width:'100%',
-        backgroundColor:'green'
+        backgroundColor:'green',
+        alignItems:'center',
+        justifyContent:'center'
     },
     boxBottom:{
-        height:200,
+        height:Dimensions.get('window').height/3,
         width:'100%',
         backgroundColor:'blue'
+    },
+    logo:{
+        width: 80, //define a menor largura possivel
+        height: 80, //define a menor altura possivel
+        resizeMode:"contain" //garantir que a imagem não mude de proporção
+    },
+    text:{
+        fontWeight:'bold',
+        marginTop:40
     }
 })
