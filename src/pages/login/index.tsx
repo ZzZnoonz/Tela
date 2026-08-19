@@ -4,7 +4,8 @@ import {
     Text,
     View,
     Image,
-    TextInput
+    TextInput,
+    TouchableOpacity
 } from 'react-native';
 
 import { style } from "./styles";
@@ -23,7 +24,7 @@ export default function Login(){
                     
                 ></Image>
 
-                <Text>Bem Vindo de volta !</Text>
+                <Text style={style.text}>Bem Vindo de volta !</Text>
 
             </View>
 
@@ -52,8 +53,16 @@ export default function Login(){
             </View>
 
             <View style={style.boxBottom}>
-                <Text>BAIXO</Text>
+                
+                <TouchableOpacity style={style.button}>
+
+                    <Text style={style.textButton}>Entrar</Text>
+
+                </TouchableOpacity>
+
             </View>
+
+            <Text style={style.textBottom}>Não tem conta ? <Text style={{color:themas.Colors.primary}}>Crie agora !</Text> </Text>
 
         </View>
 

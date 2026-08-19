@@ -41,12 +41,41 @@ export const style = StyleSheet.create({
     },
     Input:{
         height:'100%',
-        width: '90%'
+        width: '90%',
+        borderRadius:40
     },
     boxBottom:{
         height:Dimensions.get('window').height/3,
         width:'100%',
         //backgroundColor:'blue'
+        alignItems:'center',
+        marginTop:20
+    },
+    button:{
+        width:250,
+        height:50,
+        alignItems:'center',
+        justifyContent:'center',
+        backgroundColor:themas.Colors.primary,
+        borderRadius:40,
+        shadowColor: "#000",
+        shadowOffset: {
+            width: 0,
+            height: 12,
+        },
+        shadowOpacity: 0.58,
+        shadowRadius: 16.00,
+
+        elevation: 24,
+    },
+    textButton:{
+        fontSize:20,
+        color:themas.Colors.secondary,
+        fontWeight:'bold'
+    },
+    textBottom:{
+        fontSize:16,
+        color:themas.Colors.gray
     },
     logo:{
         width: 80, //define a menor largura possivel
@@ -55,6 +84,7 @@ export const style = StyleSheet.create({
     },
     text:{
         fontWeight:'bold',
-        marginTop:40
+        fontSize:22,
+        marginTop:30
     }
 })
