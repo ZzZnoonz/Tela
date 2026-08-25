@@ -1,11 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 
 import {
     Text,
     View,
     Image,
     TextInput,
-    TouchableOpacity
+    TouchableOpacity,
+    Alert,
+    ActivityIndicator
 } from 'react-native';
 
 import { style } from "./styles";
@@ -13,7 +15,28 @@ import Logo from '../../assets/logo.png';
 import { MaterialIcons } from '@expo/vector-icons';
 import { themas } from "../../global/themes";
 
+
 export default function Login(){
+    
+    const [email,setEmail] = useState('');
+    const [password,setPassword] = useState('');
+    const [loading,setLoading] = useState(false);
+
+    async function getLogin(){
+        try{
+            setLoading(true)
+            
+            if(!email || !password){
+                return Alert.alert('Atenção','Informe os campos obrigatórios')
+            }
+
+            //console.log('Logado com sucesso')
+
+        } catch (error){
+            console.log(error)
+        }
+    }   
+
     return(
         <View style={style.container}>
 
@@ -36,7 +59,11 @@ export default function Login(){
 
                 <View style={style.BoxInput}>
 
-                    <TextInput style={style.Input}></TextInput>
+                    <TextInput style={style.Input}
+                        value={email}
+                        onChangeText={setEmail}
+                    ></TextInput>
+
                     <MaterialIcons name="email" size={20} color={themas.Colors.gray}></MaterialIcons>
 
                 </View>
@@ -45,7 +72,11 @@ export default function Login(){
                 
                 <View style={style.BoxInput}>
 
-                    <TextInput style={style.Input}></TextInput>
+                    <TextInput style={style.Input}
+                        value={password}
+                        onChangeText={setPassword}
+                    ></TextInput>
+
                     <MaterialIcons name="password" size={20} color={themas.Colors.gray}></MaterialIcons>
 
                 </View>
@@ -54,7 +85,7 @@ export default function Login(){
 
             <View style={style.boxBottom}>
                 
-                <TouchableOpacity style={style.button}>
+                <TouchableOpacity style={style.button} onPress={()=>getLogin()}>
 
                     <Text style={style.textButton}>Entrar</Text>
 
