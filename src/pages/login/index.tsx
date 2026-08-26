@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 
+// npx expo start --tunnel
+
 import {
     Text,
     View,
@@ -14,6 +16,7 @@ import { style } from "./styles";
 import Logo from '../../assets/logo.png';
 import { MaterialIcons } from '@expo/vector-icons';
 import { themas } from "../../global/themes";
+import { Input } from "../../components/input";
 
 
 export default function Login(){
@@ -31,6 +34,17 @@ export default function Login(){
             }
 
             //console.log('Logado com sucesso')
+
+            setTimeout(()=>{
+                if(email == "abdielb@yahoo.com" && password == '12345'){
+                    Alert.alert('Logado com sucesso')
+                }else{
+                    Alert.alert('Usuario não encontrado')
+                }
+
+                setLoading(false) //verificar pq o botão entrar buga quando cai em Atenção','Informe os campos obrigatórios
+
+            },3000)
 
         } catch (error){
             console.log(error)
@@ -54,6 +68,8 @@ export default function Login(){
            
 
             <View style={style.boxMid}>
+
+                <Input></Input>
 
                 <Text style={style.titleInput}>Endereço de e-mail</Text>
 
@@ -86,8 +102,14 @@ export default function Login(){
             <View style={style.boxBottom}>
                 
                 <TouchableOpacity style={style.button} onPress={()=>getLogin()}>
+                    {
+                        loading?
+                            <ActivityIndicator color={'FFFF'} size={'small'}/>
+                            :
+                            <Text style={style.textButton}>Entrar</Text>
 
-                    <Text style={style.textButton}>Entrar</Text>
+                    }
+                    
 
                 </TouchableOpacity>
 
