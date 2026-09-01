@@ -16,7 +16,6 @@ import { style } from "./styles";
 import Logo from '../../assets/logo.png';
 import { MaterialIcons } from '@expo/vector-icons';
 import { themas } from "../../global/themes";
-import { Input } from "../../components/input";
 
 
 export default function Login(){
@@ -68,8 +67,6 @@ export default function Login(){
            
 
             <View style={style.boxMid}>
-
-                <Input></Input>
 
                 <Text style={style.titleInput}>Endereço de e-mail</Text>
 

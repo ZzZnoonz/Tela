@@ -1,15 +1,13 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
-import Login from './src/pages/login';
+
+import { themas } from './src/global/themes';
+import Produto from './src/pages/produto';
 
 export default function App() {
   return (
-    
-    <Login/>
-
+    <>
+      <StatusBar style="dark" backgroundColor={themas.Colors.bgScreen} />
+      <Produto />
+    </>
   );
 }
-
-const styles = StyleSheet.create({
-  
-});
