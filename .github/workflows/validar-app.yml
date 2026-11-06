@@ -1,0 +1,59 @@
+name: Validar aplicativo e capturar Android
+
+on:
+  pull_request:
+    paths:
+      - 'App.tsx'
+      - 'index.ts'
+      - 'app.json'
+      - 'package*.json'
+      - 'tsconfig.json'
+      - 'src/**'
+      - 'scripts/**'
+      - '.github/workflows/validar-app.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '22'
+          cache: npm
+      - run: npm ci --no-audit --no-fund
+      - run: npm run typecheck
+      - run: npx expo install --check
+      - run: npx expo export --platform all
+      - name: Habilitar aceleração do emulador
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      - name: Testar telas no Android e gerar prints
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 35
+          target: google_apis
+          arch: x86_64
+          profile: pixel_6
+          ram-size: 2048M
+          disable-animations: true
+          emulator-options: -no-window -gpu swiftshader_indirect -no-snapshot -noaudio -no-boot-anim -camera-back none
+          script: python3 scripts/capturar_android.py
+      - name: Disponibilizar capturas e registros da execução
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: prints-android
+          path: |
+            docs/prints/*.png
+            docs/prints/*.txt
+            docs/prints/*.xml
+          if-no-files-found: warn
+          retention-days: 14

@@ -1,0 +1,81 @@
+import { StyleSheet } from 'react-native';
+import { themas } from '../../global/themes';
+
+export const style = StyleSheet.create({
+  container: { flex: 1, backgroundColor: themas.Colors.bgScreen },
+  content: {
+    flexGrow: 1,
+    padding: 20,
+    paddingTop: 28,
+    paddingBottom: 28,
+    width: '100%',
+    maxWidth: 600,
+    alignSelf: 'center',
+  },
+  summary: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    borderRadius: 20,
+    borderWidth: 1,
+    borderColor: themas.Colors.border,
+    backgroundColor: themas.Colors.surface,
+    padding: 20,
+  },
+  metric: { flex: 1 },
+  metricLabel: {
+    color: themas.Colors.gray,
+    fontSize: 9,
+    fontWeight: '700',
+    letterSpacing: 0.8,
+    lineHeight: 15,
+  },
+  metricValue: {
+    color: themas.Colors.accent,
+    fontSize: 38,
+    fontWeight: '700',
+    marginTop: 6,
+  },
+  productCount: {
+    color: themas.Colors.text,
+    fontSize: 30,
+    fontWeight: '700',
+    marginTop: 6,
+  },
+  divider: {
+    width: 1,
+    height: 52,
+    backgroundColor: themas.Colors.border,
+    marginHorizontal: 22,
+  },
+  alert: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    gap: 8,
+    backgroundColor: themas.Colors.warningSurface,
+    padding: 12,
+    borderRadius: 12,
+    marginTop: 14,
+  },
+  alertText: { flex: 1, color: themas.Colors.warning, fontSize: 12 },
+  listHeading: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    marginTop: 28,
+    marginBottom: 14,
+  },
+  sectionTitle: {
+    color: themas.Colors.gray,
+    fontSize: 11,
+    fontWeight: '700',
+    letterSpacing: 1.5,
+  },
+  count: { color: themas.Colors.gray, fontSize: 11 },
+  footer: {
+    color: themas.Colors.gray,
+    fontSize: 11,
+    textAlign: 'center',
+    marginTop: 10,
+    lineHeight: 18,
+  },
+});

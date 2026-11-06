@@ -19,14 +19,11 @@ export const Input = forwardRef<TextInput, InputProps>(
         <Text style={style.label}>{label}</Text>
 
         <View style={style.boxInput}>
-          <MaterialIcons
-            name={icon}
-            size={27}
-            color={themas.Colors.gray}
-          />
+          <MaterialIcons name={icon} size={27} color={themas.Colors.gray} />
 
           <TextInput
             ref={ref}
+            accessibilityLabel={label}
             style={[style.input, inputStyle]}
             placeholderTextColor={themas.Colors.gray}
             {...rest}
@@ -34,7 +31,7 @@ export const Input = forwardRef<TextInput, InputProps>(
         </View>
       </View>
     );
-  }
+  },
 );
 
 Input.displayName = 'Input';

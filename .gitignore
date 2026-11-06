@@ -36,6 +36,12 @@ yarn-error.*
 # typescript
 *.tsbuildinfo
 
+# Capturas automatizadas: manter apenas as imagens da entrega no Git.
+__pycache__/
+docs/prints/*.txt
+docs/prints/*.xml
+docs/prints/falha-android.png
+
 # generated native folders
 /ios
 /android

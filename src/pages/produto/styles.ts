@@ -9,39 +9,12 @@ export const style = StyleSheet.create({
   },
   content: {
     flexGrow: 1,
-    justifyContent: 'center',
     paddingHorizontal: 20,
-    paddingTop: 48,
+    paddingTop: 28,
     paddingBottom: 30,
-  },
-  header: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 25,
-    paddingHorizontal: 4,
-  },
-  headerIcon: {
-    width: 58,
-    height: 58,
-    alignItems: 'center',
-    justifyContent: 'center',
-    borderWidth: 1,
-    borderColor: themas.Colors.border,
-    borderRadius: 18,
-    backgroundColor: themas.Colors.surfaceStrong,
-  },
-  headerText: {
-    marginLeft: 16,
-  },
-  title: {
-    color: themas.Colors.text,
-    fontSize: 28,
-    fontWeight: '700',
-  },
-  subtitle: {
-    marginTop: 3,
-    color: themas.Colors.gray,
-    fontSize: 14,
+    width: '100%',
+    maxWidth: 600,
+    alignSelf: 'center',
   },
   form: {
     width: '100%',

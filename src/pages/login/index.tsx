@@ -1,120 +1,98 @@
-import React, { useState } from "react";
-
-// npx expo start --tunnel
-
 import {
-    Text,
-    View,
-    Image,
-    TextInput,
-    TouchableOpacity,
-    Alert,
-    ActivityIndicator
+  ActivityIndicator,
+  Image,
+  KeyboardAvoidingView,
+  Platform,
+  ScrollView,
+  Text,
+  TouchableOpacity,
+  View,
 } from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
+import { StackScreenProps } from '@react-navigation/stack';
 
-import { style } from "./styles";
 import Logo from '../../assets/logo.png';
-import { MaterialIcons } from '@expo/vector-icons';
-import { themas } from "../../global/themes";
+import { Input } from '../../components/input';
+import { useLoginController } from '../../controllers/loginController';
+import { StackParamList } from '../../routes/types';
+import { style } from './styles';
 
+type Props = StackScreenProps<StackParamList, 'Login'>;
 
-export default function Login(){
-    
-    const [email,setEmail] = useState('');
-    const [password,setPassword] = useState('');
-    const [loading,setLoading] = useState(false);
+export default function Login({ navigation }: Props) {
+  const { email, setEmail, password, setPassword, loading, error, entrar } =
+    useLoginController();
 
-    async function getLogin(){
-        try{
-            setLoading(true)
-            
-            if(!email || !password){
-                return Alert.alert('Atenção','Informe os campos obrigatórios')
-            }
+  async function getLogin() {
+    if (await entrar()) navigation.replace('BottomRoutes');
+  }
 
-            //console.log('Logado com sucesso')
-
-            setTimeout(()=>{
-                if(email == "abdielb@yahoo.com" && password == '12345'){
-                    Alert.alert('Logado com sucesso')
-                }else{
-                    Alert.alert('Usuario não encontrado')
-                }
-
-                setLoading(false) //verificar pq o botão entrar buga quando cai em Atenção','Informe os campos obrigatórios
-
-            },3000)
-
-        } catch (error){
-            console.log(error)
-        }
-    }   
-
-    return(
-        <View style={style.container}>
-
-            <View style={style.boxTop}>
-                <Image
-                    source={Logo}
-                    style={style.logo} //chama o style da imagem
-                    
-                ></Image>
-
-                <Text style={style.text}>Bem Vindo de volta !</Text>
-
-            </View>
-
-           
-
-            <View style={style.boxMid}>
-
-                <Text style={style.titleInput}>Endereço de e-mail</Text>
-
-                <View style={style.BoxInput}>
-
-                    <TextInput style={style.Input}
-                        value={email}
-                        onChangeText={setEmail}
-                    ></TextInput>
-
-                    <MaterialIcons name="email" size={20} color={themas.Colors.gray}></MaterialIcons>
-
-                </View>
-
-                <Text style={style.titleInput}>Senha</Text>
-                
-                <View style={style.BoxInput}>
-
-                    <TextInput style={style.Input}
-                        value={password}
-                        onChangeText={setPassword}
-                    ></TextInput>
-
-                    <MaterialIcons name="password" size={20} color={themas.Colors.gray}></MaterialIcons>
-
-                </View>
-
-            </View>
-
-            <View style={style.boxBottom}>
-                
-                <TouchableOpacity style={style.button} onPress={()=>getLogin()}>
-                    {
-                        loading?
-                            <ActivityIndicator color={'FFFF'} size={'small'}/>
-                            :
-                            <Text style={style.textButton}>Entrar</Text>
-
-                    }
-                    
-
-                </TouchableOpacity>
-
-            </View>
-
-            <Text style={style.textBottom}>Não tem conta ? <Text style={{color:themas.Colors.primary}}>Crie agora !</Text> </Text>
-
-        </View>
-
-    )
+  return (
+    <SafeAreaView style={style.container}>
+      <KeyboardAvoidingView
+        style={style.container}
+        behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+      >
+        <ScrollView
+          contentContainerStyle={style.content}
+          keyboardShouldPersistTaps="handled"
+        >
+          <View style={style.brand}>
+            <Image source={Logo} style={style.logo} />
+            <Text style={style.eyebrow}>GESTÃO DE ESTOQUE</Text>
+            <Text style={style.title}>Bem-vindo de volta!</Text>
+            <Text style={style.subtitle}>
+              Entre para acessar seus produtos.
+            </Text>
+          </View>
+          <View style={style.form}>
+            <Input
+              label="Endereço de e-mail"
+              icon="email"
+              value={email}
+              onChangeText={setEmail}
+              keyboardType="email-address"
+              autoCapitalize="none"
+              autoCorrect={false}
+              placeholder="Seu e-mail"
+            />
+            <Input
+              label="Senha"
+              icon="lock-outline"
+              value={password}
+              onChangeText={setPassword}
+              secureTextEntry
+              autoCapitalize="none"
+              autoCorrect={false}
+              placeholder="Sua senha"
+              returnKeyType="go"
+              onSubmitEditing={getLogin}
+            />
+            {!!error && (
+              <Text accessibilityRole="alert" style={style.error}>
+                {error}
+              </Text>
+            )}
+            <TouchableOpacity
+              accessibilityRole="button"
+              accessibilityLabel="Entrar"
+              style={[style.button, loading && style.loading]}
+              disabled={loading}
+              onPress={getLogin}
+            >
+              {loading ? (
+                <ActivityIndicator color="#FFFFFF" size="small" />
+              ) : (
+                <Text style={style.buttonText}>Entrar</Text>
+              )}
+            </TouchableOpacity>
+          </View>
+          <Text style={style.demo}>ACESSO DE DEMONSTRAÇÃO</Text>
+          <Text selectable style={style.credentials}>
+            abdielb@yahoo.com · senha: 12345
+          </Text>
+        </ScrollView>
+      </KeyboardAvoidingView>
+    </SafeAreaView>
+  );
 }
