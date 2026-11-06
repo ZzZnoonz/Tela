@@ -13,7 +13,13 @@ export const style = StyleSheet.create({
     alignSelf: 'center',
   },
   brand: { alignItems: 'center', marginBottom: 32 },
-  logo: { width: 64, height: 64, resizeMode: 'contain', marginBottom: 22 },
+  logo: {
+    width: 64,
+    height: 64,
+    resizeMode: 'contain',
+    marginBottom: 22,
+    tintColor: themas.Colors.accent,
+  },
   eyebrow: {
     color: themas.Colors.accent,
     fontSize: 10,
@@ -63,7 +69,7 @@ export const style = StyleSheet.create({
     textAlign: 'center',
     marginTop: 26,
   },
-  credentials: {
+  hint: {
     color: themas.Colors.gray,
     fontSize: 12,
     textAlign: 'center',

@@ -11,12 +11,7 @@ npm start
 
 Abra no Expo Go compatível com o SDK 54 ou use um emulador Android. Para a versão Web, execute `npm run web`.
 
-O acesso de demonstração mantém os dados usados em aula:
-
-- E-mail: `abdielb@yahoo.com`
-- Senha: `12345`
-
-Esse login é uma simulação local para a atividade e não deve ser usado como autenticação de um aplicativo de produção.
+O acesso de demonstração mantém a validação local usada em aula. O login é apenas uma simulação para a atividade, sem conexão com um serviço de autenticação.
 
 ## Telas
 
@@ -67,3 +62,13 @@ python3 scripts/capturar_android.py
 ```
 
 As capturas são gravadas em `docs/prints/`. Os registros de diagnóstico e a captura de eventual falha ficam no mesmo diretório.
+
+### Capturas reais da atividade
+
+As imagens abaixo foram obtidas no aplicativo executando no Expo Go em um emulador Android API 35. A execução de verificação de login, navegação e seleção dos três motivos [foi aprovada no GitHub](https://github.com/ZzZnoonz/Tela/actions/runs/42246168677).
+
+| Saída de Produto | Controle de Estoque |
+| --- | --- |
+| ![Saída de Produto no Android](docs/prints/saida-produto.png) | ![Controle de Estoque no Android](docs/prints/controle-estoque.png) |
+
+[Ver a lista suspensa com os três motivos](docs/prints/motivos-retirada.png).

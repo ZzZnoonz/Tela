@@ -88,8 +88,8 @@ export default function Login({ navigation }: Props) {
             </TouchableOpacity>
           </View>
           <Text style={style.demo}>ACESSO DE DEMONSTRAÇÃO</Text>
-          <Text selectable style={style.credentials}>
-            abdielb@yahoo.com · senha: 12345
+          <Text style={style.hint}>
+            Utilize os dados de teste usados em aula.
           </Text>
         </ScrollView>
       </KeyboardAvoidingView>
