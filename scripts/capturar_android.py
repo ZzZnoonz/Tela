@@ -39,13 +39,15 @@ def tap(node):
     adb('shell', 'input', 'tap', str((x1 + x2) // 2), str((y1 + y2) // 2))
 
 
-def wait_for(label, timeout=40):
+def wait_for(label, timeout=40, input_only=False):
     deadline = time.monotonic() + timeout
     while time.monotonic() < deadline:
         try:
             nodes = hierarchy()
             for node in nodes:
-                if matches(node, label):
+                if matches(node, label) and (
+                    not input_only or node.get('class') == 'android.widget.EditText'
+                ):
                     return node
         except (subprocess.SubprocessError, ET.ParseError):
             pass
@@ -58,7 +60,7 @@ def click(label):
 
 
 def fill(label, value):
-    tap(wait_for(label))
+    tap(wait_for(label, input_only=True))
     adb('shell', 'input', 'keyevent', '123')
     adb('shell', 'input', 'keyevent', *(['67'] * 60))
     adb('shell', 'input', 'text', value)
@@ -100,7 +102,7 @@ def verify():
     assert wait_for('Entrar').get('enabled') == 'true'
     print('OK: campos vazios não travam o login.', flush=True)
 
-    assert wait_for('Senha').get('password') == 'true'
+    assert wait_for('Senha', input_only=True).get('password') == 'true'
     fill('Endereço de e-mail', 'abdielb@yahoo.com')
     fill('Senha', 'errada')
     click('Entrar')

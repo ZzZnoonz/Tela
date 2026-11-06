@@ -49,17 +49,28 @@ export default function BottomRoutes() {
       <Tab.Screen
         name="Produto"
         component={Produto}
-        options={{ title: 'Novo Produto' }}
+        options={{
+          title: 'Novo Produto',
+          tabBarAccessibilityLabel: 'Novo Produto',
+        }}
       />
       <Tab.Screen
         name="Saida"
         component={Saida}
-        options={{ title: 'Saída de Produto', tabBarLabel: 'Saída' }}
+        options={{
+          title: 'Saída de Produto',
+          tabBarLabel: 'Saída',
+          tabBarAccessibilityLabel: 'Saída',
+        }}
       />
       <Tab.Screen
         name="Estoque"
         component={Estoque}
-        options={{ title: 'Controle de Estoque', tabBarLabel: 'Estoque' }}
+        options={{
+          title: 'Controle de Estoque',
+          tabBarLabel: 'Estoque',
+          tabBarAccessibilityLabel: 'Estoque',
+        }}
       />
     </Tab.Navigator>
   );
