@@ -1,6 +1,8 @@
 export const themas = {
   Colors: {
     primary: '#08090b',
+    primaryDark: '#050607',
+    primaryMuted: '#20242b',
     secondary: '#f7f7f7',
     lightGray: '#2a2e35',
     gray: '#969ca5',
@@ -9,7 +11,12 @@ export const themas = {
     surfaceStrong: '#20242b',
     border: '#343941',
     text: '#f4f4f5',
-    red: '#FF494C',
+    textMuted: '#B7BBC3',
+    red: '#FF6B6B',
+    success: '#4ADE80',
+    successMuted: '#173A28',
+    warning: '#F6C453',
+    warningMuted: '#433719',
     blueLigth: '#134e70ff',
     blackTransparent: '#00000080',
   },
